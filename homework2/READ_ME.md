@@ -1,30 +1,21 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Getting Started:
-
-cd cs4200
-cd homework2
-cd movie_theater_booking
+    cd cs4200
+    cd homework2
+    cd movie_theater_booking
 
 Opening Enviroment:
-python3 -m venv myenv -- system - site - packages
-source myenv / bin / activate
-pip install django djangorestframework
+    python3 -m venv myenv -- system - site - packages
+    source myenv / bin / activate
+    pip install django djangorestframework
 
+Migrations:
+    python manage.py makemigrations bookings
+    python manage.py migrate
+    python manage.py runserver 0.0.0.0:3000
 
+Testing: 
+    python manage.py test bookings
 
 
 OPENAI HELP:
