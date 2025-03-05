@@ -1,0 +1,50 @@
+{% extends 'bookings/base.html' %}
+
+{% block title %}My Bookings{% endblock %}
+
+{% block content %}
+  {% if user.is_authenticated %}
+    <h2 class="section-title">Your Past Bookings</h2>
+    {% if bookings %}
+      <ul class="list-group">
+        {% for booking in bookings %}
+          <li class="list-group-item">
+            <strong>Movie:</strong> {{ booking.movie.title }}<br>
+            <strong>Seat:</strong> {{ booking.seat.seat_number }}<br>
+            <strong>Date:</strong> {{ booking.booking_date }}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No bookings found.</p>
+    {% endif %}
+  {% else %}
+    <h2 class="section-title">Please Log In or Sign Up to View Your Bookings</h2>
+
+    {% if error_message %}
+      <div class="alert alert-danger">{{ error_message }}</div>
+    {% endif %}
+
+    <div class="row">
+      <!-- Login Form -->
+      <div class="col-md-6">
+        <h3>Sign In</h3>
+        <form method="post" action="{% url 'auth' %}">
+          {% csrf_token %}
+          {{ login_form.as_p }}
+          <button type="submit" name="login_submit" class="btn btn-primary">Sign In</button>
+        </form>
+      </div>
+
+      <!-- Signup Form -->
+      <div class="col-md-6">
+        <h3>Create Account</h3>
+        <form method="post" action="{% url 'auth' %}">
+          {% csrf_token %}
+          {{ signup_form.as_p }}
+          <button type="submit" name="signup_submit" class="btn btn-success">Create Account</button>
+        </form>
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}
