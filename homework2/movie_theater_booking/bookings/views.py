@@ -9,6 +9,8 @@ from .serializers import MovieSerializer, SeatSerializer, BookingSerializer
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 
+
+#3.3 Implementing the MVT Architecture
 class MovieViewSet(viewsets.ModelViewSet):
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
@@ -21,6 +23,9 @@ class BookingViewSet(viewsets.ModelViewSet):
     queryset = Booking.objects.all()
     serializer_class = BookingSerializer
     permission_classes = [IsAuthenticated]
+    def get_serializer_context(self):
+        """Pass request context to serializer."""
+        return {'request': self.request}  # Pass request to serializer
 
 def movie_list_view(request):
     movies = Movie.objects.all()

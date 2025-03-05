@@ -19,6 +19,12 @@ cd cs4200
 cd homework2
 cd movie_theater_booking
 
+Opening Enviroment:
+python3 -m venv myenv -- system - site - packages
+source myenv / bin / activate
+pip install django djangorestframework
+
+
 
 
 OPENAI HELP:
